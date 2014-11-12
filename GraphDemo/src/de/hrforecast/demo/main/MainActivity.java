@@ -46,10 +46,12 @@ public class MainActivity extends ListActivity {
 
 			break;
 		case 5:
-
+			this.startActivity(new Intent(this,
+					de.hrforecast.demo.holograph.ChartActivity.class));
 			break;
 		case 6:
-			this.startActivity(new Intent(this, ChartActivity.class));
+			this.startActivity(new Intent(this,
+					de.hrforecast.demo.william.ChartActivity.class));
 			break;
 		case 7:
 

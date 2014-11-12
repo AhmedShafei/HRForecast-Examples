@@ -4,5 +4,6 @@
     <string name="app_name">Graph Demo</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_william_chart">William Charts</string>
+    <string name="title_holograph">Holograph Charts</string>
 
 </resources>
