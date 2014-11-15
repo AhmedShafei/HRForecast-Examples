@@ -40,7 +40,7 @@ public class MainActivity extends ListActivity {
 
 			break;
 		case 3:
-
+			this.startActivity(new Intent(this, ChartActivity.class));
 			break;
 		case 4:
 

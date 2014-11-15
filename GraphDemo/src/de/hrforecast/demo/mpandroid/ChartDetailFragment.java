@@ -32,7 +32,7 @@ public class ChartDetailFragment extends Fragment {
 		 * chartDetailFragment class
 		 */
 		View rootView = inflater.inflate(
-				R.layout.william_fragment_chart_detail, container, false);
+				R.layout.mpandroid_activity_line_chart, container, false);
 
 		return rootView;
 	}

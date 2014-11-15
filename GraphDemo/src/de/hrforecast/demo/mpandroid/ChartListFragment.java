@@ -32,9 +32,9 @@ public class ChartListFragment extends ListFragment {
 		 * Edit this with the chart types you choose for your library
 		 * implementation
 		 */
-		String[] charts = { "Vertical Bar Chart", "Pie Chart",
-				"Horizontal Bar Chart", "Radar Chart", "Scatter Chart",
-				"etc..", "etc..", "etc..", "etc.." };
+		String[] charts = { "Line Chart", "Bar Chart",
+				"BarChartGrouped", "Radar Chart", "Pie Chart",
+			};
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 				this.getActivity(), android.R.layout.simple_list_item_1, charts);

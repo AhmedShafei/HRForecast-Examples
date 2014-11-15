@@ -19,6 +19,7 @@ public class ChartActivity extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chart_twopane);
+		  //LineChart chart = (LineChart) findViewById(R.id.chart);
 
 		ChartListFragment chartListFragment = new ChartListFragment();
 		getSupportFragmentManager().beginTransaction()
