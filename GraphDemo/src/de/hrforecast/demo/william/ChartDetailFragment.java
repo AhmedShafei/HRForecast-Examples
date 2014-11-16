@@ -1,11 +1,23 @@
 package de.hrforecast.demo.william;
 
+import com.db.chart.listener.OnEntryClickListener;
+import com.db.chart.model.Bar;
+import com.db.chart.model.BarSet;
+import com.db.chart.view.BarChartView;
+import com.db.chart.view.LineChartView;
+import com.db.chart.view.StackBarChartView;
+import com.db.chart.view.XController.LabelPosition;
+
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 import de.hrforecast.demo.R;
 
 /**
@@ -14,7 +26,7 @@ import de.hrforecast.demo.R;
  */
 public class ChartDetailFragment extends Fragment {
 
-	private int selectedChart;
+	private ViewFlipper chartFlipper;
 
 	public ChartDetailFragment() {
 	}
@@ -34,7 +46,110 @@ public class ChartDetailFragment extends Fragment {
 		View rootView = inflater.inflate(
 				R.layout.william_fragment_chart_detail, container, false);
 
+		chartFlipper = (ViewFlipper) rootView
+				.findViewById(R.id.william_chartFlipper);
+
+		BarChartView barChart = (BarChartView) rootView
+				.findViewById(R.id.william_barChart);
+		LineChartView lineChart = (LineChartView) rootView
+				.findViewById(R.id.william_lineChart);
+		StackBarChartView stackedChart = (StackBarChartView) rootView
+				.findViewById(R.id.william_stackChart);
+
+		initializeBarChart(barChart);
+		initializeLineChart(lineChart);
+		initializeStackedChart(stackedChart);
+
 		return rootView;
+	}
+
+	private void initializeBarChart(BarChartView barChart) {
+		/**
+		 * Library methods barChart.setBarBackground(bool);
+		 * barChart.setBarBackgroundColor(color); barChart.setBarSpacing(dimen);
+		 * barChart.setBorderSpacing(spacing); barChart.setEntryBehaviour(view);
+		 * barChart.setFontSize(size); barChart.setGrid(paint);
+		 * barChart.setLabelColor(color);
+		 * barChart.setMaxAxisValue(maxAxisValue,step);
+		 * barChart.setOnClickListener(listener);
+		 * barChart.setOnEntryClickListener(listener);
+		 * barChart.setRoundCorners(radius); barChart.setSetSpacing(spacing);
+		 * barChart.setStep(step); barChart.setThresholdLine(value, paint);
+		 * barChart.setTopSpacing(spacing); barChart.setTypeface(typeface);
+		 * barChart.setXAxis(bool); barChart.setXLabels(position);
+		 * barChart.setYAxis(bool); barChart.setYLabels(position);
+		 * barChart.show(); barChart.notifyDataUpdate();
+		 * barChart.showTooltip(tooltip);
+		 */
+
+		// set coloring
+		barChart.setBarBackgroundColor(Color.WHITE);
+		barChart.setBarBackground(true);
+		barChart.setLabelColor(Color.CYAN);
+
+		// set space spacings and values
+		barChart.setBorderSpacing(10);
+		barChart.setTopSpacing(10);
+		barChart.setBarSpacing(30);
+		barChart.setFontSize(15);
+		barChart.setMaxAxisValue(30, 2);
+		barChart.setRoundCorners(5);
+		barChart.setXLabels(LabelPosition.INSIDE);
+
+		// set Grid
+		Paint paint1 = new Paint();
+		paint1.setColor(Color.BLUE);
+		paint1.setStyle(Paint.Style.FILL_AND_STROKE);
+		barChart.setGrid(paint1);
+
+		// Set Threshold
+		Paint paint2 = new Paint();
+		paint2.setColor(Color.BLACK);
+		barChart.setThresholdLine(10, paint2);
+
+		// Set bars data
+		final BarSet barSet = new BarSet();
+		Bar bar1 = new Bar("Bar 1", 5);
+		bar1.setColor(Color.RED);
+		Bar bar2 = new Bar("Bar 2", 10.5f);
+		bar2.setColor(Color.RED);
+		Bar bar3 = new Bar("Bar 3", 7);
+		bar3.setColor(Color.GREEN);
+		Bar bar4 = new Bar("Bar 4", 20.2f);
+		bar4.setColor(Color.GRAY);
+		Bar bar5 = new Bar("Bar 5", 15);
+		bar5.setColor(Color.MAGENTA);
+		Bar bar6 = new Bar("Bar 5", 15);
+		bar6.setColor(Color.MAGENTA);
+		Bar bar7 = new Bar("Bar 5", 15);
+		barSet.addBar(bar1);
+		barSet.addBar(bar2);
+		barSet.addBar(bar3);
+		barSet.addBar(bar4);
+		barSet.addBar(bar5);
+		barSet.addBar(bar6);
+		barSet.addBar(bar7);
+		barChart.addData(barSet);
+
+		// set Entry click
+		barChart.setOnEntryClickListener(new OnEntryClickListener() {
+			@Override
+			public void onClick(int setIndex, int entryIndex, Rect rect) {
+				Toast.makeText(ChartDetailFragment.this.getActivity(),
+						barSet.getEntry(entryIndex).getLabel() + " is clicked",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		barChart.show();
+	}
+
+	private void initializeLineChart(LineChartView lineChart) {
+
+	}
+
+	private void initializeStackedChart(StackBarChartView StackedChart) {
+
 	}
 
 	/**
@@ -45,13 +160,9 @@ public class ChartDetailFragment extends Fragment {
 	 *            corresponding {@link ChartListFragment}
 	 */
 	public void updateChartDetails(int position) {
-		this.selectedChart = position;
-
 		/**
-		 * Dummy TextView, to be changed to the actual implementation of the
-		 * library charts
+		 * String[] charts = { "Bar Chart", "Line Chart", "Stacked Chart" };
 		 */
-		((TextView) this.getView().findViewById(R.id.chart_detailText))
-				.setText("Chart in position " + selectedChart + " is selected");
+		this.chartFlipper.setDisplayedChild(position);
 	}
 }
