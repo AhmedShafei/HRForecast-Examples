@@ -1,5 +1,6 @@
 package de.hrforecast.demo.william;
 
+import com.db.chart.Tools;
 import com.db.chart.listener.OnEntryClickListener;
 import com.db.chart.model.Bar;
 import com.db.chart.model.BarSet;
@@ -11,6 +12,7 @@ import com.db.chart.view.StackBarChartView;
 import com.db.chart.view.XController.LabelPosition;
 
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -80,11 +82,16 @@ public class ChartDetailFragment extends Fragment {
 		barChart.setRoundCorners(5);
 		barChart.setXLabels(LabelPosition.INSIDE);
 
-		// set Grid
+		// set Grid			
 		Paint paint1 = new Paint();
 		paint1.setColor(Color.BLUE);
-		paint1.setStyle(Paint.Style.FILL_AND_STROKE);
+		paint1.setStyle(Paint.Style.STROKE);
+		paint1.setStrokeWidth(Tools.fromDpToPx(1));
+		paint1.setAntiAlias(true);
+		paint1.setPathEffect(new DashPathEffect(new float[] {10,10}, 0));
 		barChart.setGrid(paint1);
+		barChart.setHorizontalGrid(paint1);
+		barChart.setVerticalGrid(paint1);
 
 		// Set Threshold
 		Paint paint2 = new Paint();
@@ -125,6 +132,7 @@ public class ChartDetailFragment extends Fragment {
 			}
 		});
 
+		
 		barChart.show();
 	}
 
@@ -184,6 +192,66 @@ public class ChartDetailFragment extends Fragment {
 	}
 
 	private void initializeStackedChart(StackBarChartView StackedChart) {
+		// set coloring
+		StackedChart.setBarBackgroundColor(Color.WHITE);
+		StackedChart.setBarBackground(true);
+		StackedChart.setLabelColor(Color.CYAN);
+
+		// set space spacings and values
+		StackedChart.setBorderSpacing(10);
+		StackedChart.setTopSpacing(10);
+		StackedChart.setBarSpacing(30);
+		StackedChart.setFontSize(15);
+		StackedChart.setMaxAxisValue(30, 2);
+		StackedChart.setRoundCorners(5);
+		StackedChart.setXLabels(LabelPosition.INSIDE);
+
+		// set Grid
+		Paint paint1 = new Paint();
+		paint1.setColor(Color.BLUE);
+		paint1.setStyle(Paint.Style.FILL_AND_STROKE);
+		StackedChart.setGrid(paint1);
+
+		// Set Threshold
+		Paint paint2 = new Paint();
+		paint2.setColor(Color.BLACK);
+		StackedChart.setThresholdLine(10, paint2);
+
+		// Set bars data
+		final BarSet barSet = new BarSet();
+		Bar bar1 = new Bar("Bar 1", 5);
+		bar1.setColor(Color.RED);
+		Bar bar2 = new Bar("Bar 2", 10.5f);
+		bar2.setColor(Color.RED);
+		Bar bar3 = new Bar("Bar 3", 7);
+		bar3.setColor(Color.GREEN);
+		Bar bar4 = new Bar("Bar 4", 20.2f);
+		bar4.setColor(Color.GRAY);
+		Bar bar5 = new Bar("Bar 5", 15);
+		bar5.setColor(Color.MAGENTA);
+		Bar bar6 = new Bar("Bar 5", 13);
+		bar6.setColor(Color.MAGENTA);
+		Bar bar7 = new Bar("Bar 5", 2);
+		barSet.addBar(bar1);
+		barSet.addBar(bar2);
+		barSet.addBar(bar3);
+		barSet.addBar(bar4);
+		barSet.addBar(bar5);
+		barSet.addBar(bar6);
+		barSet.addBar(bar7);
+		StackedChart.addData(barSet);
+
+		// set Entry click
+		StackedChart.setOnEntryClickListener(new OnEntryClickListener() {
+			@Override
+			public void onClick(int setIndex, int entryIndex, Rect rect) {
+				Toast.makeText(ChartDetailFragment.this.getActivity(),
+						barSet.getEntry(entryIndex).getLabel() + " is clicked",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		StackedChart.show();
 
 	}
 
