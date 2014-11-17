@@ -1,16 +1,5 @@
 package de.hrforecast.demo.william;
 
-import com.db.chart.Tools;
-import com.db.chart.listener.OnEntryClickListener;
-import com.db.chart.model.Bar;
-import com.db.chart.model.BarSet;
-import com.db.chart.model.LineSet;
-import com.db.chart.model.Point;
-import com.db.chart.view.BarChartView;
-import com.db.chart.view.LineChartView;
-import com.db.chart.view.StackBarChartView;
-import com.db.chart.view.XController.LabelPosition;
-
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
@@ -22,6 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.db.chart.Tools;
+import com.db.chart.listener.OnEntryClickListener;
+import com.db.chart.model.Bar;
+import com.db.chart.model.BarSet;
+import com.db.chart.model.LineSet;
+import com.db.chart.model.Point;
+import com.db.chart.view.BarChartView;
+import com.db.chart.view.LineChartView;
+import com.db.chart.view.StackBarChartView;
+import com.db.chart.view.XController.LabelPosition;
+
 import de.hrforecast.demo.R;
 
 /**
@@ -60,6 +61,10 @@ public class ChartDetailFragment extends Fragment {
 		StackBarChartView stackedChart = (StackBarChartView) rootView
 				.findViewById(R.id.william_stackChart);
 
+		/**
+		 * Charts methods are duplicated in the following three methods for
+		 * better illustration for the demo.
+		 */
 		initializeBarChart(barChart);
 		initializeLineChart(lineChart);
 		initializeStackedChart(stackedChart);
@@ -82,13 +87,13 @@ public class ChartDetailFragment extends Fragment {
 		barChart.setRoundCorners(5);
 		barChart.setXLabels(LabelPosition.INSIDE);
 
-		// set Grid			
+		// set Grid
 		Paint paint1 = new Paint();
 		paint1.setColor(Color.BLUE);
 		paint1.setStyle(Paint.Style.STROKE);
 		paint1.setStrokeWidth(Tools.fromDpToPx(1));
 		paint1.setAntiAlias(true);
-		paint1.setPathEffect(new DashPathEffect(new float[] {10,10}, 0));
+		paint1.setPathEffect(new DashPathEffect(new float[] { 10, 10 }, 0));
 		barChart.setGrid(paint1);
 		barChart.setHorizontalGrid(paint1);
 		barChart.setVerticalGrid(paint1);
@@ -132,7 +137,7 @@ public class ChartDetailFragment extends Fragment {
 			}
 		});
 
-		
+		// show BarChart
 		barChart.show();
 	}
 
@@ -187,6 +192,7 @@ public class ChartDetailFragment extends Fragment {
 			}
 		});
 
+		// Show LineChart
 		lineChart.show();
 
 	}
@@ -202,9 +208,6 @@ public class ChartDetailFragment extends Fragment {
 		StackedChart.setTopSpacing(10);
 		StackedChart.setBarSpacing(30);
 		StackedChart.setFontSize(15);
-		StackedChart.setMaxAxisValue(30, 2);
-		StackedChart.setRoundCorners(5);
-		StackedChart.setXLabels(LabelPosition.INSIDE);
 
 		// set Grid
 		Paint paint1 = new Paint();
@@ -217,7 +220,7 @@ public class ChartDetailFragment extends Fragment {
 		paint2.setColor(Color.BLACK);
 		StackedChart.setThresholdLine(10, paint2);
 
-		// Set bars data
+		// Set bars data,first bars and then second bars
 		final BarSet barSet = new BarSet();
 		Bar bar1 = new Bar("Bar 1", 5);
 		bar1.setColor(Color.RED);
@@ -229,9 +232,9 @@ public class ChartDetailFragment extends Fragment {
 		bar4.setColor(Color.GRAY);
 		Bar bar5 = new Bar("Bar 5", 15);
 		bar5.setColor(Color.MAGENTA);
-		Bar bar6 = new Bar("Bar 5", 13);
+		Bar bar6 = new Bar("Bar 6", 13);
 		bar6.setColor(Color.MAGENTA);
-		Bar bar7 = new Bar("Bar 5", 2);
+		Bar bar7 = new Bar("Bar 7", 2);
 		barSet.addBar(bar1);
 		barSet.addBar(bar2);
 		barSet.addBar(bar3);
@@ -239,18 +242,47 @@ public class ChartDetailFragment extends Fragment {
 		barSet.addBar(bar5);
 		barSet.addBar(bar6);
 		barSet.addBar(bar7);
+		final BarSet barSet2 = new BarSet();
+		Bar bar11 = new Bar("Bar 1 new", 8);
+		bar11.setColor(Color.DKGRAY);
+		Bar bar21 = new Bar("Bar 2 new", 4f);
+		bar21.setColor(Color.DKGRAY);
+		Bar bar31 = new Bar("Bar 3 new", 10);
+		bar31.setColor(Color.DKGRAY);
+		Bar bar41 = new Bar("Bar 4 new", 6f);
+		bar41.setColor(Color.DKGRAY);
+		Bar bar51 = new Bar("Bar 5 new", 5);
+		bar51.setColor(Color.DKGRAY);
+		Bar bar61 = new Bar("Bar 6 new", 7);
+		bar61.setColor(Color.DKGRAY);
+		Bar bar71 = new Bar("Bar 7 new", 10);
+		bar71.setColor(Color.DKGRAY);
+		barSet2.addBar(bar11);
+		barSet2.addBar(bar21);
+		barSet2.addBar(bar31);
+		barSet2.addBar(bar41);
+		barSet2.addBar(bar51);
+		barSet2.addBar(bar61);
+		barSet2.addBar(bar71);
+
 		StackedChart.addData(barSet);
+		StackedChart.addData(barSet2);
 
 		// set Entry click
 		StackedChart.setOnEntryClickListener(new OnEntryClickListener() {
 			@Override
 			public void onClick(int setIndex, int entryIndex, Rect rect) {
+				String text = "";
+				if (setIndex == 0)
+					text = barSet.getEntry(entryIndex).getLabel();
+				else
+					text = barSet2.getEntry(entryIndex).getLabel();
 				Toast.makeText(ChartDetailFragment.this.getActivity(),
-						barSet.getEntry(entryIndex).getLabel() + " is clicked",
-						Toast.LENGTH_SHORT).show();
+						text + " is clicked", Toast.LENGTH_SHORT).show();
 			}
 		});
 
+		// Show StackedBarChart
 		StackedChart.show();
 
 	}
