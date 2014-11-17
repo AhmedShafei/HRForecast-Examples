@@ -1,8 +1,38 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/chart_detailText"
-    style="?android:attr/textAppearanceLarge"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:textIsSelectable="true" />
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/william_chartFlipper"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="6dp"
+    android:inAnimation="@android:anim/slide_in_left"
+    android:outAnimation="@android:anim/slide_out_right" >
+
+    <com.db.chart.view.BarChartView
+        xmlns:chart="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/william_barChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        chart:chart_axisBorderSpacing="25dp"
+        chart:chart_axisColor="#455a64" />
+
+    <com.db.chart.view.LineChartView
+        xmlns:chart="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/william_lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        chart:chart_axisBorderSpacing="0dp"
+        chart:chart_shadowColor="#80000000"
+        chart:chart_shadowDy="1dp"
+        chart:chart_shadowRadius="1dp" />
+
+    <com.db.chart.view.StackBarChartView
+        xmlns:chart="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/william_stackChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        chart:chart_axisBorderSpacing="25dp"
+        chart:chart_axisColor="#455a64" />
+
+</ViewFlipper>
