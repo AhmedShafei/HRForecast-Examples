@@ -3,6 +3,8 @@ package de.hrforecast.demo.william;
 import com.db.chart.listener.OnEntryClickListener;
 import com.db.chart.model.Bar;
 import com.db.chart.model.BarSet;
+import com.db.chart.model.LineSet;
+import com.db.chart.model.Point;
 import com.db.chart.view.BarChartView;
 import com.db.chart.view.LineChartView;
 import com.db.chart.view.StackBarChartView;
@@ -64,24 +66,6 @@ public class ChartDetailFragment extends Fragment {
 	}
 
 	private void initializeBarChart(BarChartView barChart) {
-		/**
-		 * Library methods barChart.setBarBackground(bool);
-		 * barChart.setBarBackgroundColor(color); barChart.setBarSpacing(dimen);
-		 * barChart.setBorderSpacing(spacing); barChart.setEntryBehaviour(view);
-		 * barChart.setFontSize(size); barChart.setGrid(paint);
-		 * barChart.setLabelColor(color);
-		 * barChart.setMaxAxisValue(maxAxisValue,step);
-		 * barChart.setOnClickListener(listener);
-		 * barChart.setOnEntryClickListener(listener);
-		 * barChart.setRoundCorners(radius); barChart.setSetSpacing(spacing);
-		 * barChart.setStep(step); barChart.setThresholdLine(value, paint);
-		 * barChart.setTopSpacing(spacing); barChart.setTypeface(typeface);
-		 * barChart.setXAxis(bool); barChart.setXLabels(position);
-		 * barChart.setYAxis(bool); barChart.setYLabels(position);
-		 * barChart.show(); barChart.notifyDataUpdate();
-		 * barChart.showTooltip(tooltip);
-		 */
-
 		// set coloring
 		barChart.setBarBackgroundColor(Color.WHITE);
 		barChart.setBarBackground(true);
@@ -119,9 +103,9 @@ public class ChartDetailFragment extends Fragment {
 		bar4.setColor(Color.GRAY);
 		Bar bar5 = new Bar("Bar 5", 15);
 		bar5.setColor(Color.MAGENTA);
-		Bar bar6 = new Bar("Bar 5", 15);
+		Bar bar6 = new Bar("Bar 5", 13);
 		bar6.setColor(Color.MAGENTA);
-		Bar bar7 = new Bar("Bar 5", 15);
+		Bar bar7 = new Bar("Bar 5", 2);
 		barSet.addBar(bar1);
 		barSet.addBar(bar2);
 		barSet.addBar(bar3);
@@ -145,6 +129,57 @@ public class ChartDetailFragment extends Fragment {
 	}
 
 	private void initializeLineChart(LineChartView lineChart) {
+		// Set lines data
+		final LineSet lineSet = new LineSet();
+		Point point1 = new Point("point1", 5);
+		Point point2 = new Point("point2", 10.5f);
+		Point point3 = new Point("point3", 7);
+		Point point4 = new Point("point4", 20.2f);
+		Point point5 = new Point("point5", 15);
+		Point point6 = new Point("point6", 13);
+		Point point7 = new Point("point7", 2);
+		lineSet.addPoint(point1);
+		lineSet.addPoint(point2);
+		lineSet.addPoint(point3);
+		lineSet.addPoint(point4);
+		lineSet.addPoint(point5);
+		lineSet.addPoint(point6);
+		lineSet.addPoint(point7);
+
+		// Style dots
+		lineSet.setDots(true);
+		lineSet.setDotsColor(Color.RED);
+		lineSet.setDotsRadius(6);
+		lineSet.setDotsStrokeThickness(2);
+		lineSet.setDotsStrokeColor(Color.YELLOW);
+
+		// Style line
+		lineSet.setLineThickness(2);
+		lineSet.setLineColor(Color.BLUE);
+
+		// Style background fill
+		lineSet.setFill(true);
+		lineSet.setFill(Color.GREEN);
+
+		// Style type lineSet
+		lineSet.setLineDashed(true);
+		lineSet.setSmooth(true);
+		lineSet.setLineSmooth(true);
+
+		lineChart.addData(lineSet);
+
+		// set Entry click
+		lineChart.setOnEntryClickListener(new OnEntryClickListener() {
+			@Override
+			public void onClick(int setIndex, int entryIndex, Rect rect) {
+				Toast.makeText(
+						ChartDetailFragment.this.getActivity(),
+						lineSet.getEntry(entryIndex).getLabel() + " is clicked",
+						Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		lineChart.show();
 
 	}
 
