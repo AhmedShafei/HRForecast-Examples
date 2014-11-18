@@ -31,7 +31,13 @@ public class ChartActivity extends FragmentActivity implements
 	}
 
 	@Override
+	public void onChartSelected(int itemPosition, String itemText) {
+		chartDetailFragment.updateChartDetails(itemPosition, itemText );
+	}
+
+	@Override
 	public void onChartSelected(int position) {
-		chartDetailFragment.updateChartDetails(position);
+		// TODO Auto-generated method stub
+		
 	}
 }

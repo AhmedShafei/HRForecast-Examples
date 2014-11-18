@@ -46,29 +46,32 @@ public class ChartDetailFragment extends Fragment {
 	 *            It's the position of the selected chart type in the
 	 *            corresponding {@link ChartListFragment}
 	 */
-	public void updateChartDetails(int position) {
-		this.selectedChart = position;
+	public void updateChartDetails(int itemPosition, String itemText) {
+		this.selectedChart = itemPosition;
 
 		/**
 		 * Dummy TextView, to be changed to the actual implementation of the
 		 * library charts
 		 */
-		// ((TextView) this.getView().findViewById(R.id.chart_detailText))
-		// .setText("Chart in position " + selectedChart + " is selected");
-		switch (position) {
+
+		switch (itemPosition) {
 		case 0:
-			((FrameLayout) this.getView().findViewById(
-					R.id.charts_detailContainer))
+			((TextView) this.getView().findViewById(R.id.chart_detailText))
 					.setBackgroundColor(Color.BLUE);
+			((TextView) this.getView().findViewById(R.id.chart_detailText))
+					.setText(itemText + " is selected");
 			break;
 		case 1:
-			((FrameLayout) this.getView().findViewById(
-					R.id.charts_detailContainer))
-					.setBackgroundColor(Color.BLACK);
+			((TextView) this.getView().findViewById(R.id.chart_detailText))
+					.setBackgroundColor(Color.YELLOW);
+			((TextView) this.getView().findViewById(R.id.chart_detailText))
+					.setText(itemText + " is selected");
 			break;
 		case 2:
-			((FrameLayout) this.getView().findViewById(
-					R.id.charts_detailContainer)).setBackgroundColor(Color.RED);
+			((TextView) this.getView().findViewById(R.id.chart_detailText))
+					.setBackgroundColor(Color.RED);
+			((TextView) this.getView().findViewById(R.id.chart_detailText))
+					.setText(itemText + " is selected");
 			break;
 		}
 

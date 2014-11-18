@@ -3,6 +3,7 @@ package de.hrforecast.demo.holograph;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,6 +20,8 @@ public class ChartListFragment extends ListFragment {
 
 	public interface Callbacks {
 		public void onChartSelected(int position);
+
+		void onChartSelected(int selectedItemPosition, String selectedItemText);
 	}
 
 	public ChartListFragment() {
@@ -67,6 +70,8 @@ public class ChartListFragment extends ListFragment {
 			tempView.setBackgroundResource(android.R.color.white);
 		view.setBackgroundResource(android.R.color.darker_gray);
 		tempView = view;
+		Log.d("t1","selected id" + id);
+		Log.d("t2","Selected item:" + listView.getItemIdAtPosition(position));
 		listCallback.onChartSelected(position);
 	}
 }
