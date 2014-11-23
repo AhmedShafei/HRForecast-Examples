@@ -1,38 +1,51 @@
 package de.hrforecast.demo.mpandroid;
 
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import de.hrforecast.demo.R;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-/**
- * {@link FragmentActivity} responsible for populating both the
- * {@link ChartListFragment} and {@link ChartDetailFragment}. It receives
- * callback from {@link ChartListFragment} whenever new chart type is selected,
- * and notifies the {@link ChartDetailFragment}
- */
-public class ChartActivity extends FragmentActivity implements
-		ChartListFragment.Callbacks {
-
-	private ChartDetailFragment chartDetailFragment;
+public class ChartActivity extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_chart_twopane);
-		  //LineChart chart = (LineChart) findViewById(R.id.chart);
-
-		ChartListFragment chartListFragment = new ChartListFragment();
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.charts_listContainer, chartListFragment).commit();
-
-		chartDetailFragment = new ChartDetailFragment();
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.charts_detailContainer, chartDetailFragment)
-				.commit();
+		String[] libraries = { "Line Chart", "Bar Chart", "BarChartGrouped",
+				"Radar Chart", "Pie Chart" };
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, libraries);
+		setListAdapter(adapter);
 	}
 
+	/**
+	 * Insert your activity intent here at your corresponding case number.
+	 */
 	@Override
-	public void onChartSelected(int position) {
-		chartDetailFragment.updateChartDetails(position);
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		switch (position) {
+		case 0:
+			this.startActivity(new Intent(this, LineChartActivity.class));
+			break;
+		case 1:
+			this.startActivity(new Intent(this, BarChartActivity.class));
+			break;
+		case 2:
+
+			break;
+		case 3:
+			this.startActivity(new Intent(this, RadarChartActivity.class));
+			break;
+		case 4:
+			this.startActivity(new Intent(this, PieChartActivity.class));
+			break;
+		case 5:
+
+			break;
+		case 6:
+
+			break;
+		}
 	}
 }

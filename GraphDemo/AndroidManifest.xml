@@ -27,6 +27,26 @@
             android:name=".william.ChartActivity"
             android:label="@string/title_william_chart" >
         </activity>
+        <activity
+            android:name="de.hrforecast.demo.mpandroid.ChartActivity"
+            android:label="@string/title_mpandroid_chart" >
+        </activity>
+        <activity
+            android:name="de.hrforecast.demo.mpandroid.LineChartActivity"
+            android:label="@string/title_mpandroid_line_chart" >
+        </activity>
+        <activity
+            android:name="de.hrforecast.demo.mpandroid.BarChartActivity"
+            android:label="@string/title_mpandroid_bar_chart" >
+        </activity>
+        <activity
+            android:name="de.hrforecast.demo.mpandroid.RadarChartActivity"
+            android:label="@string/title_mpandroid_radar_chart" >
+        </activity>
+        <activity
+            android:name="de.hrforecast.demo.mpandroid.PieChartActivity"
+            android:label="@string/title_mpandroid_pie_chart" >
+        </activity>
     </application>
 
 </manifest>

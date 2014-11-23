@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.TextView;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -15,12 +14,11 @@ import com.github.mikephil.charting.utils.LimitLine.LimitLabelPosition;
 import com.github.mikephil.charting.charts.LineChart;
 
 import de.hrforecast.demo.R;
+import de.hrforecast.demo.mpandroid.DemoBase;
 
 public class LineChartActivity extends DemoBase {
+	// create the LineChart object
 	private LineChart lineChart;
-	// private SeekBar mSeekBarX, mSeekBarY;
-	private TextView tvX;
-	private TextView tvY;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,73 +27,54 @@ public class LineChartActivity extends DemoBase {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.mpandroid_activity_line_chart);
 
-		tvX = (TextView) findViewById(R.id.tvXMax);
-		tvY = (TextView) findViewById(R.id.tvYMax);
-
-		// mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-		// mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
-
-		// mSeekBarX.setProgress(45);
-		// mSeekBarY.setProgress(100);
-
-		// mSeekBarY.setOnSeekBarChangeListener(this);
-		// mSeekBarX.setOnSeekBarChangeListener(this);
-
 		lineChart = (LineChart) findViewById(R.id.chart1);
-		// lineChart.setOnChartGestureListener(this);
-		// lineChart.setOnChartValueSelectedListener(this);
 
-		lineChart.setUnit(" $");
+		// set properties like - unit of the values in the chart
+		lineChart.setUnit("h");
 		lineChart.setDrawUnitsInChart(true);
-
 		// if enabled, the chart will always start at zero on the y-axis
 		lineChart.setStartAtZero(false);
-		// add data
-		setData(45, 100);
+		//enables zooming for both X-axis and Y-axis
+		lineChart.setPinchZoom(true);
 
-		// disable the drawing of values into the chart
-		// lineChart.setDrawYValues(false);
+		// add chart data - uses the implementation of setData method, values
+		// are just test ones
+		setData(12, 60);
 
-		// lineChart.setDrawBorder(true);
-		// lineChart.setBorderPositions(new BorderPosition[] {
-		// BorderPosition.BOTTOM
-		// });
 	}
 
 	private void setData(int count, float range) {
 
+		// Sets data for the X-axis
 		ArrayList<String> xVals = new ArrayList<String>();
 		for (int i = 0; i < count; i++) {
+			xVals.add((i) + "");
 		}
 
+		// Sets data for the Y-axis
 		ArrayList<Entry> yVals = new ArrayList<Entry>();
 
 		for (int i = 0; i < count; i++) {
 			float mult = (range + 1);
-			float val = (float) (Math.random() * mult) + 3;// + (float)
-															// ((mult *
-															// 0.1) / 10);
+			float val = (float) (Math.random() * mult) + 3;
 			yVals.add(new Entry(val, i));
 		}
 
 		// create a dataset and give it a type
-		LineDataSet set1 = new LineDataSet(yVals, "DataSet 1");
-		// set1.setFillAlpha(110);
-		// set1.setFillColor(Color.RED);
+		LineDataSet set1 = new LineDataSet(yVals, "Test Data Set");
 
-		// set the line to be drawn like this "- - - - - -"
+		// sets dashed line visualisation for the graph
 		set1.enableDashedLine(10f, 5f, 0f);
-		set1.setColor(Color.BLACK);
+		set1.setColor(Color.GREEN);
 		set1.setCircleColor(Color.BLACK);
-		set1.setLineWidth(1f);
+		set1.setLineWidth(2f);
 		set1.setCircleSize(4f);
 		set1.setFillAlpha(65);
 		set1.setFillColor(Color.BLACK);
-		// set1.setShader(new LinearGradient(0, 0, 0, mChart.getHeight(),
-		// Color.BLACK, Color.WHITE, Shader.TileMode.MIRROR));
+		lineChart.setBackgroundColor(Color.TRANSPARENT);
 
 		ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
-		dataSets.add(set1); // add the datasets
+		dataSets.add(set1); // adds the datasets
 
 		// create a data object with the datasets
 		LineData data = new LineData(xVals, dataSets);

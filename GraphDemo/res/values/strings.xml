@@ -4,5 +4,10 @@
     <string name="app_name">Graph Demo</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_william_chart">William Charts</string>
+    <string name="title_mpandroid_chart">MPAndroid Charts</string>
+    <string name="title_mpandroid_line_chart">MPAndroid LineChart</string>
+    <string name="title_mpandroid_bar_chart">MPAndroid BarChart</string>
+    <string name="title_mpandroid_pie_chart">MPAndroid PieChart</string>
+    <string name="title_mpandroid_radar_chart">MPAndroid RadarChart</string>
 
 </resources>

@@ -18,7 +18,7 @@
         android:gravity="right"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
+   <TextView
         android:id="@+id/tvYMax"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -27,6 +27,5 @@
         android:layout_marginRight="10dp"
         android:gravity="right"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
 
 </RelativeLayout>

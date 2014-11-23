@@ -40,7 +40,8 @@ public class MainActivity extends ListActivity {
 
 			break;
 		case 3:
-			this.startActivity(new Intent(this, ChartActivity.class));
+			this.startActivity(new Intent(this,
+					de.hrforecast.demo.mpandroid.ChartActivity.class));
 			break;
 		case 4:
 
