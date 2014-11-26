@@ -81,9 +81,6 @@ public class PieChartActivity extends DemoBase implements
 
 		ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
-		// IMPORTANT: In a PieChart, no values (Entry) should have the same
-		// xIndex (even if from different DataSets), since no values can be
-		// drawn above each other.
 		for (int i = 0; i < count + 1; i++) {
 			yVals1.add(new Entry((float) (Math.random() * mult) + mult / 5, i));
 		}

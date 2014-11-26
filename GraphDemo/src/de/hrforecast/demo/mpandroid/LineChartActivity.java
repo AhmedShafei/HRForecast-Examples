@@ -65,6 +65,7 @@ public class LineChartActivity extends DemoBase {
 
 		// sets dashed line visualisation for the graph
 		set1.enableDashedLine(10f, 5f, 0f);
+		
 		set1.setColor(Color.GREEN);
 		set1.setCircleColor(Color.BLACK);
 		set1.setLineWidth(2f);
@@ -79,20 +80,20 @@ public class LineChartActivity extends DemoBase {
 		// create a data object with the datasets
 		LineData data = new LineData(xVals, dataSets);
 
-		LimitLine ll1 = new LimitLine(130f);
-		ll1.setLineWidth(4f);
-		ll1.enableDashedLine(10f, 10f, 0f);
-		ll1.setDrawValue(true);
-		ll1.setLabelPosition(LimitLabelPosition.RIGHT);
+		LimitLine limitLine1 = new LimitLine(130f);
+		limitLine1.setLineWidth(4f);
+		limitLine1.enableDashedLine(10f, 10f, 0f);
+		limitLine1.setDrawValue(true);
+		limitLine1.setLabelPosition(LimitLabelPosition.RIGHT);
 
-		LimitLine ll2 = new LimitLine(-30f);
-		ll2.setLineWidth(4f);
-		ll2.enableDashedLine(10f, 10f, 0f);
-		ll2.setDrawValue(true);
-		ll2.setLabelPosition(LimitLabelPosition.RIGHT);
+		LimitLine limitLine2 = new LimitLine(-30f);
+		limitLine2.setLineWidth(4f);
+		limitLine2.enableDashedLine(10f, 10f, 0f);
+		limitLine2.setDrawValue(true);
+		limitLine2.setLabelPosition(LimitLabelPosition.RIGHT);
 
-		data.addLimitLine(ll1);
-		data.addLimitLine(ll2);
+		data.addLimitLine(limitLine1);
+		data.addLimitLine(limitLine2);
 
 		// set data
 		lineChart.setData(data);

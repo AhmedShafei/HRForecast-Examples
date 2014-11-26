@@ -3,10 +3,8 @@ package de.hrforecast.demo.mpandroid;
 import java.util.ArrayList;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
-import android.graphics.PointF;
-import android.graphics.RectF;
+
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -14,6 +12,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.interfaces.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.XLabels;
 import com.github.mikephil.charting.utils.XLabels.XLabelPosition;
 import com.github.mikephil.charting.utils.YLabels;
@@ -75,15 +74,7 @@ public class BarChartActivity extends DemoBase implements
 
 	@Override
 	public void onValueSelected(Entry entry, int dataSetIndex) {
-		// TODO Auto-generated method stub
-		if (entry == null)
-			return;
-
-		RectF bounds = barChart.getBarBounds((BarEntry) entry);
-		PointF position = barChart.getPosition(entry);
-
-		Log.i("bounds", bounds.toString());
-		Log.i("position", position.toString());
+	
 	}
 
 	@Override
@@ -106,12 +97,23 @@ public class BarChartActivity extends DemoBase implements
 			float val = (float) (Math.random() * mult);
 			yVals1.add(new BarEntry(val, i));
 		}
+		
+		ArrayList<BarEntry> yVals2 = new ArrayList<BarEntry>();
 
-		BarDataSet set1 = new BarDataSet(yVals1, "Test Data Set");
+		for (int i = 0; i < count; i++) {
+			float mult = (range + 1);
+			float val = (float) (Math.random() * mult);
+			yVals2.add(new BarEntry(val, i));
+		}
+
+		BarDataSet set1 = new BarDataSet(yVals1, "TraineeHours");
+		BarDataSet set2 = new BarDataSet(yVals2, "WeeklyWorkingH");
+		set2.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
 		set1.setBarSpacePercent(35f);
 
 		ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
 		dataSets.add(set1);
+		dataSets.add(set2);
 
 		BarData data = new BarData(xVals, dataSets);
 
