@@ -1,4 +1,4 @@
-package de.hrforecast.demo.main;
+package de.hrforecast.demo.mpandroid;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -6,19 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import de.hrforecast.demo.william.ChartActivity;
 
-/**
- * Launcher {@link ListActivity} responsible for launching the libraries intents
- */
-public class MainActivity extends ListActivity {
+public class ChartActivity extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		String[] libraries = { "HelloChart", "HZ Graph", "AFreeChart",
-				"MP Android", "Eaze Graph", "Holograph", "William Charts",
-				"AChart Engine", "Android Plot" };
+		String[] libraries = { "Line Chart", "Bar Chart", "BarChartGrouped",
+				"Radar Chart", "Pie Chart" };
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, libraries);
 		setListAdapter(adapter);
@@ -31,34 +26,24 @@ public class MainActivity extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		switch (position) {
 		case 0:
-
+			this.startActivity(new Intent(this, LineChartActivity.class));
 			break;
 		case 1:
-
+			this.startActivity(new Intent(this, BarChartActivity.class));
 			break;
 		case 2:
 
 			break;
 		case 3:
-			this.startActivity(new Intent(this,
-					de.hrforecast.demo.mpandroid.ChartActivity.class));
+			this.startActivity(new Intent(this, RadarChartActivity.class));
 			break;
 		case 4:
-
+			this.startActivity(new Intent(this, PieChartActivity.class));
 			break;
 		case 5:
 
 			break;
 		case 6:
-			this.startActivity(new Intent(this, ChartActivity.class));
-			break;
-		case 7:
-
-			break;
-		case 8:
-
-			break;
-		case 9:
 
 			break;
 		}
