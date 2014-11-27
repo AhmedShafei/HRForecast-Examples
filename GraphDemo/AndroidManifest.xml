@@ -47,6 +47,30 @@
             android:name="de.hrforecast.demo.mpandroid.PieChartActivity"
             android:label="@string/title_mpandroid_pie_chart" >
         </activity>
+         <activity
+            android:name=".androidplot.AndroidPlotActivity"
+            android:label="@string/title_william_chart" >
+        </activity>
+        <activity
+            android:name=".androidplot.PieChartActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".androidplot.BarChartActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".androidplot.XYRegionActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".androidplot.ListViewActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".achartengine.ChartEngineActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

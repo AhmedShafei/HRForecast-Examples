@@ -9,5 +9,5 @@
     <string name="title_mpandroid_bar_chart">MPAndroid BarChart</string>
     <string name="title_mpandroid_pie_chart">MPAndroid PieChart</string>
     <string name="title_mpandroid_radar_chart">MPAndroid RadarChart</string>
-
+	<string name="donut">Donut Size</string>
 </resources>
