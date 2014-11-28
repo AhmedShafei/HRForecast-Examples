@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import de.hrforecast.demo.william.ChartActivity;
 
 /**
  * Launcher {@link ListActivity} responsible for launching the libraries intents
@@ -50,13 +49,14 @@ public class MainActivity extends ListActivity {
 
 			break;
 		case 6:
-			this.startActivity(new Intent(this, ChartActivity.class));
+			// this.startActivity(new Intent(this, ChartActivity.class));
 			break;
 		case 7:
 
 			break;
 		case 8:
-
+			this.startActivity(new Intent(this,
+					de.hrforecast.demo.androidplot.AndroidPlotActivity.class));
 			break;
 		case 9:
 

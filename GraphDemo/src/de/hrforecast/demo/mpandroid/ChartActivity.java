@@ -12,7 +12,7 @@ public class ChartActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		String[] libraries = { "Line Chart", "Bar Chart", "BarChartGrouped",
+		String[] libraries = { "Line Chart", "Bar Chart",
 				"Radar Chart", "Pie Chart" };
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, libraries);
@@ -32,20 +32,12 @@ public class ChartActivity extends ListActivity {
 			this.startActivity(new Intent(this, BarChartActivity.class));
 			break;
 		case 2:
-
-			break;
-		case 3:
 			this.startActivity(new Intent(this, RadarChartActivity.class));
 			break;
-		case 4:
+		case 3:
 			this.startActivity(new Intent(this, PieChartActivity.class));
 			break;
-		case 5:
-
-			break;
-		case 6:
-
-			break;
+		
 		}
 	}
 }

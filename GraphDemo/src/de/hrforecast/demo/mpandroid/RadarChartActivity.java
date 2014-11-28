@@ -62,10 +62,11 @@ public class RadarChartActivity extends DemoBase {
 
 		ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 		ArrayList<Entry> yVals2 = new ArrayList<Entry>();
+		ArrayList<Entry> yVals3 = new ArrayList<Entry>();
 
-		// IMPORTANT: In a PieChart, no values (Entry) should have the same
-		// xIndex (even if from different DataSets), since no values can be
-		// drawn above each other.
+		for (int i = 0; i < cnt; i++) {
+			yVals3.add(new Entry((float) (Math.random() * mult) + mult / 2, i));
+		}
 		for (int i = 0; i < cnt; i++) {
 			yVals1.add(new Entry((float) (Math.random() * mult) + mult / 2, i));
 		}
@@ -89,9 +90,15 @@ public class RadarChartActivity extends DemoBase {
 		set2.setDrawFilled(true);
 		set2.setLineWidth(2f);
 
+		RadarDataSet set3 = new RadarDataSet(yVals3, "Set 3");
+		set3.setColor(ColorTemplate.VORDIPLOM_COLORS[2]);
+		set3.setDrawFilled(true);
+		set3.setLineWidth(2f);
+		
 		ArrayList<RadarDataSet> sets = new ArrayList<RadarDataSet>();
 		sets.add(set1);
 		sets.add(set2);
+		sets.add(set3);
 
 		RadarData data = new RadarData(xVals, sets);
 
